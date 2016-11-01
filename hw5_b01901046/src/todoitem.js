@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 export default class TodoItem extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class TodoItem extends React.Component {
 
   render() {
     return (
-      <li className = {this.props.completed ? 'completed' : ''}>
+      <li className={this.props.completed ? 'completed' : ''}>
         <div className="view">
           <input
             className="toggle"

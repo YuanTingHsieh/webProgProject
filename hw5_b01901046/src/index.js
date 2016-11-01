@@ -7,49 +7,13 @@
 /* eslint-disable react/no-multi-comp */
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable no-plusplus */
-const { Component } = React; // eslint-disable-line
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-class TodoItem extends Component {
-  constructor(props) {
-    super(props);
+import TodoItem from './todoitem';
+import CountDisplay from './countdis';
 
-    this.removeItem = this.removeItem.bind(this);
-    this.checkItem = this.checkItem.bind(this);
-  }
-
-  removeItem() {
-    this.props.removeItem(this.props.idx);
-  }
-
-  checkItem() {
-    this.props.checkItem(this.props.idx);
-  }
-
-  render() {
-    return (
-      <li className = {this.props.completed ? 'completed' : ''}>
-        <div className="view">
-          <input
-            className="toggle"
-            type="checkbox"
-            checked={this.props.completed}
-            onClick={this.checkItem}
-          />
-          <label>{this.props.content}</label>
-          <button className="destroy" onClick={this.removeItem} />
-        </div>
-      </li>
-    );
-  }
-}
-
-class CountDisplay extends Component {
-  render() {
-    return (
-      <div>Still have {this.props.number} todos not finished yet!!!</div>
-    );
-  }
-}
+import './todo.css';
 
 class TodoApp extends Component {
   constructor(props) {

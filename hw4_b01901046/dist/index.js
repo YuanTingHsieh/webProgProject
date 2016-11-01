@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -10,8 +10,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/jsx-closing-bracket-location */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable no-plusplus */
 var _React = React,
-    Component = _React.Component;
+    Component = _React.Component; // eslint-disable-line
 
 var TodoItem = function (_Component) {
   _inherits(TodoItem, _Component);
@@ -27,36 +36,36 @@ var TodoItem = function (_Component) {
   }
 
   _createClass(TodoItem, [{
-    key: "removeItem",
+    key: 'removeItem',
     value: function removeItem() {
       this.props.removeItem(this.props.idx);
     }
   }, {
-    key: "checkItem",
+    key: 'checkItem',
     value: function checkItem() {
       this.props.checkItem(this.props.idx);
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       return React.createElement(
-        "li",
-        null,
+        'li',
+        { className: this.props.completed ? 'completed' : '' },
         React.createElement(
-          "div",
-          { className: "view" },
-          React.createElement("input", {
-            className: "toggle",
-            type: "checkbox",
+          'div',
+          { className: 'view' },
+          React.createElement('input', {
+            className: 'toggle',
+            type: 'checkbox',
             checked: this.props.completed,
             onClick: this.checkItem
           }),
           React.createElement(
-            "label",
+            'label',
             null,
             this.props.content
           ),
-          React.createElement("button", { className: "destroy", onClick: this.removeItem })
+          React.createElement('button', { className: 'destroy', onClick: this.removeItem })
         )
       );
     }
@@ -75,14 +84,14 @@ var CountDisplay = function (_Component2) {
   }
 
   _createClass(CountDisplay, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       return React.createElement(
-        "div",
+        'div',
         null,
-        "Still have ",
+        'Still have ',
         this.props.number,
-        " todos not finished yet!!!"
+        ' todos not finished yet!!!'
       );
     }
   }]);
@@ -112,12 +121,12 @@ var TodoApp = function (_Component3) {
   }
 
   _createClass(TodoApp, [{
-    key: "addItem",
+    key: 'addItem',
     value: function addItem(text) {
       this.setState({ items: [].concat(_toConsumableArray(this.state.items), [{ content: text, completed: false }]) });
     }
   }, {
-    key: "removeItem",
+    key: 'removeItem',
     value: function removeItem(idx) {
       this.setState({
         items: this.state.items.filter(function (v, i) {
@@ -126,17 +135,19 @@ var TodoApp = function (_Component3) {
       });
     }
   }, {
-    key: "checkItem",
+    key: 'checkItem',
     value: function checkItem(idx) {
       var newItems = [].concat(_toConsumableArray(this.state.items));
       newItems[idx].completed = !newItems[idx].completed;
-      this.setState({ items: newItems });
+      this.setState({
+        items: newItems
+      });
     }
   }, {
-    key: "handleInputKeyPress",
+    key: 'handleInputKeyPress',
     value: function handleInputKeyPress(e) {
       if (e.key === 'Enter') {
-        if (this.state.inputText !== '') {
+        if (this.state.inputText.trim() !== '') {
           this.addItem(this.state.inputText);
           this.setState({ inputText: '' });
         }
@@ -145,7 +156,7 @@ var TodoApp = function (_Component3) {
       }
     }
   }, {
-    key: "renderTodoList",
+    key: 'renderTodoList',
     value: function renderTodoList() {
       var _this4 = this;
 
@@ -165,44 +176,44 @@ var TodoApp = function (_Component3) {
       });
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var activeTodoCount = this.state.items.reduce(function (accum, todo) {
         return todo.completed ? accum : accum + 1;
       }, 0);
       return React.createElement(
-        "div",
+        'div',
         null,
         React.createElement(
-          "section",
-          { className: "todoapp" },
+          'section',
+          { className: 'todoapp' },
           React.createElement(
-            "header",
-            { className: "header" },
+            'header',
+            { className: 'header' },
             React.createElement(
-              "h1",
+              'h1',
               null,
-              "todos"
+              'todos'
             ),
-            React.createElement("input", {
-              className: "new-todo",
-              placeholder: "What needs to be done?",
+            React.createElement('input', {
+              className: 'new-todo',
+              placeholder: 'What needs to be done?',
               value: this.state.inputText,
               onKeyPress: this.handleInputKeyPress
             })
           )
         ),
         React.createElement(
-          "section",
-          { className: "main" },
-          React.createElement("input", {
-            className: "toggle-all",
-            type: "checkbox",
+          'section',
+          { className: 'main' },
+          React.createElement('input', {
+            className: 'toggle-all',
+            type: 'checkbox',
             checked: activeTodoCount === 0
           }),
           React.createElement(
-            "ul",
-            { className: "todo-list" },
+            'ul',
+            { className: 'todo-list' },
             this.renderTodoList()
           )
         ),
@@ -214,7 +225,8 @@ var TodoApp = function (_Component3) {
   return TodoApp;
 }(Component);
 
-ReactDOM.render(React.createElement(TodoApp, null), document.getElementById('todoapp'));
+ReactDOM.render( // eslint-disable-line
+React.createElement(TodoApp, null), document.getElementById('todoapp'));
 
 /*
   <section class="todoapp">
